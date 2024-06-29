@@ -6,11 +6,13 @@ export const useApi = () => {
    const api = axios.create({
       baseURL: config.public.apiBaseUrl,
       headers: { 'Content-Type': 'application/json' },
+
       timeout: 10000
    });
 
    api.interceptors.request.use(
       (config) => {
+         // config.headers['Language'] = nuxtApp.$i18n.locale.value;
          return config;
       },
       (error) => Promise.reject(error)

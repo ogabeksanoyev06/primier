@@ -3,7 +3,7 @@
       <section class="flex flex-col gap-10 mb-20">
          <div class="flex items-center justify-between">
             <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">Products</h2>
-            <UIButton variant="ghost" class="p-0">
+            <UIButton variant="ghost" class="!p-0">
                <div class="flex items-center gap-2">
                   <span class="text-base">All products</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

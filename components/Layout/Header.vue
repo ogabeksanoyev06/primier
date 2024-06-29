@@ -7,7 +7,7 @@
          <nav class="hidden md:flex items-center md:gap-6 lg:gap-16 xl:gap-[90px] transition-all duration-300">
             <NuxtLink to="/" class="text-base font-medium transition-colors hover:text-primary"> Home </NuxtLink>
             <NuxtLink to="/products" class="text-base font-medium transition-colors hover:text-primary">Products</NuxtLink>
-            <NuxtLink to="/" class="text-base font-medium transition-colors hover:text-primary">Financing / leasing</NuxtLink>
+            <NuxtLink to="/leasing" class="text-base font-medium transition-colors hover:text-primary">Financing / leasing</NuxtLink>
             <NuxtLink to="/our-projects" class="text-base font-medium transition-colors hover:text-primary">Our projects</NuxtLink>
          </nav>
          <button class="md:hidden flex">
