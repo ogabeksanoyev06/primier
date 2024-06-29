@@ -39,4 +39,20 @@
    </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { storeToRefs } from 'pinia';
+import { useProductsStore } from '~/stores/products.js';
+import { useCategoriesStore } from '~/stores/categories.js';
+
+//
+const { productsStore } = useProductsStore();
+const { categoriesStore } = useCategoriesStore();
+
+//
+const { categories } = storeToRefs(categoriesStore);
+
+//
+const { data: products, error } = await useAsyncData('products', async () => {
+   await productsStore.getProducts();
+});
+</script>

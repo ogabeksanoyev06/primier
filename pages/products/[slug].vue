@@ -5,7 +5,7 @@
             <div class="xl:col-span-4">
                <div class="sticky top-32">
                   <div class="border rounded">
-                     <swiper :modules="[SwiperMousewheel]" :thumbs="{ swiper: thumbsSwiper }" :loop="true" :mousewheel="true" direction="horizontal">
+                     <swiper :modules="[SwiperMousewheel]" :loop="true" :mousewheel="true" direction="horizontal">
                         <swiper-slide class="p-4 sm:p-[20px_25px] lg:p-[45px_50px] xl:p-[90px_110px]" v-for="(item, i) in 10" :key="i">
                            <div class="flex items-center justify-center w-full h-full">
                               <img src="/assets/images/image.png" alt="" />
@@ -13,7 +13,7 @@
                         </swiper-slide>
                      </swiper>
                   </div>
-                  <swiper @swiper="setThumbsSwiper" :slidesPerView="4" :mousewheel="true" :modules="[SwiperMousewheel]" class="mt-6">
+                  <swiper :slidesPerView="4" :mousewheel="true" :modules="[SwiperMousewheel]" class="mt-6">
                      <swiper-slide class="" v-for="(item, i) in 10" :key="i">
                         <div class="flex items-center justify-center w-18 h-18 sm:w-32 sm:h-24 border rounded">
                            <img src="/assets/images/image.png" alt="" class="w-14 h-14 sm:w-20 sm:h-20 object-contain" />

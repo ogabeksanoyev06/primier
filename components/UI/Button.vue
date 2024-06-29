@@ -1,18 +1,13 @@
-<!-- Button.vue -->
 <template>
-   <button :class="computedClasses" :disabled="disabled" :style="{ width: width }" role="button" :aria-label="label" @click="$emit('click')">
+   <button :class="computedClasses" :disabled="props.disabled" v-bind="$attrs" @click="emitClick" :style="{ width: props.width }">
       <slot />
    </button>
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
 
 const props = defineProps({
-   label: {
-      type: String,
-      default: ''
-   },
    disabled: Boolean,
    block: Boolean,
    size: {
@@ -50,4 +45,12 @@ const sizeClasses = {
 };
 
 const computedClasses = computed(() => [baseClasses, variantClasses[props.variant], sizeClasses[props.size], props.block ? 'w-full' : ''].join(' '));
+
+const emit = defineEmits(['click']);
+
+function emitClick(event) {
+   if (!props.disabled) {
+      emit('click', event);
+   }
+}
 </script>

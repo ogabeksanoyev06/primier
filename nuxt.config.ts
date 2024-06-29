@@ -5,5 +5,12 @@ export default defineNuxtConfig({
       layoutTransition: { name: 'layout', mode: 'out-in' }
    },
    css: ['@/assets/styles/main.css'],
-   modules: ['@nuxtjs/tailwindcss', '@nuxt/image', 'nuxt-swiper']
+
+   modules: ['@nuxtjs/tailwindcss', '@nuxt/image', 'nuxt-swiper', '@nuxtjs/i18n', '@pinia/nuxt'],
+
+   runtimeConfig: {
+      public: {
+         apiBaseUrl: 'https://web.verel-auto.uz/api/'
+      }
+   }
 });

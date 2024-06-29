@@ -1,7 +1,7 @@
 <template>
    <div>
       <NuxtLoadingIndicator />
-      <NuxtRouteAnnouncer />
+      <!-- <NuxtRouteAnnouncer /> -->
       <NuxtLayout>
          <NuxtPage />
       </NuxtLayout>
