@@ -13,10 +13,20 @@
             </UIButton>
          </div>
          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <UICard v-for="(item, i) in 8" :key="i" />
+            <UICard v-for="(item, i) in products" :key="i" :product="item" />
          </div>
       </section>
    </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useProductsStore } from '~/stores/products.js';
+
+const productsStore = useProductsStore();
+
+const { getProducts } = productsStore;
+
+const { data: products } = await useAsyncData('products', async () => {
+   return await getProducts();
+});
+</script>

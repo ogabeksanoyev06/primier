@@ -8,11 +8,15 @@
                   <div class="flex flex-col gap-8 border-r">
                      <h3 class="text-2xl font-medium">Product us</h3>
                      <ul class="flex flex-col gap-8">
-                        <li class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer">All products</li>
-                        <li class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer">Серия DELTA CENTER</li>
-                        <li class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer">Серия ALPHA CENTER</li>
-                        <li class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer">Серия VFxxxUHP для силовой и скоростной обработки</li>
-                        <li class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer">Серия POWER CENTER для силовой обработки</li>
+                        <li
+                           class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer"
+                           v-for="(item, i) in categories"
+                           :key="i"
+                           :class="{ 'text-primary': isActiveCategory(item.id) }"
+                           @click="navigateToCategory(item.id)"
+                        >
+                           {{ item.title.uz }}
+                        </li>
                      </ul>
                   </div>
                </div>
@@ -21,36 +25,53 @@
             <div class="lg:col-span-5">
                <div class="flex flex-col gap-10">
                   <div class="flex flex-col gap-6">
+                     {{ productCategory }}
                      <h3 class="text-xl sm:text-2xl font-medium">Серия DELTA CENTER</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <UICard v-for="(item, i) in 10" :key="i" />
                      </div>
                   </div>
-                  <div class="flex flex-col gap-6">
+                  <!-- <div class="flex flex-col gap-6">
                      <h3 class="text-xl sm:text-2xl font-medium">Серия VFxxxUHP для силовой и скоростной обработки</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <UICard v-for="(item, i) in 10" :key="i" />
                      </div>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </div>
       </div>
-      {{ products }}
    </div>
-   <UICheckbox />
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia';
+import { ref, watchEffect } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { useProductsStore } from '~/stores/products.js';
 import { useCategoriesStore } from '~/stores/categories.js';
 
-const { productsStore } = useProductsStore();
-const { categoriesStore } = useCategoriesStore();
+const router = useRouter();
+const route = useRoute();
 
-const { categories } = storeToRefs(categoriesStore);
+const productsStore = useProductsStore();
+const categoriesStore = useCategoriesStore();
 
-const { data } = await useAsyncData('products', () => productsStore.getProducts());
-console.log(data);
+const { getProductCategoryId } = productsStore;
+const { getProductsCategories } = categoriesStore;
+
+const navigateToCategory = (categoryId) => {
+   router.push({ query: { categoryId } });
+};
+
+const isActiveCategory = (categoryId) => {
+   return route.query.categoryId === categoryId;
+};
+
+const { data: categories } = await useAsyncData('categories', async () => {
+   return await getProductsCategories();
+});
+
+const { data: productCategory } = await useAsyncData('productCategory', async () => {
+   return await getProductCategoryId(route.query.categoryId);
+});
 </script>

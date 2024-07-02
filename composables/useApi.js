@@ -2,17 +2,14 @@ import axios from 'axios';
 
 export const useApi = () => {
    const config = useRuntimeConfig();
-
    const api = axios.create({
-      baseURL: config.public.apiBaseUrl,
       headers: { 'Content-Type': 'application/json' },
-
       timeout: 10000
    });
-
+   api.defaults.baseURL = config.public.apiBaseUrl;
    api.interceptors.request.use(
       (config) => {
-         // config.headers['Language'] = nuxtApp.$i18n.locale.value;
+         config.headers['Language'] = 'uz';
          return config;
       },
       (error) => Promise.reject(error)

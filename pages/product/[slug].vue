@@ -5,27 +5,59 @@
             <div class="xl:col-span-4">
                <div class="sticky top-32">
                   <div class="border rounded">
-                     <swiper :modules="[SwiperMousewheel]" :loop="true" :mousewheel="true" direction="horizontal">
-                        <swiper-slide class="p-4 sm:p-[20px_25px] lg:p-[45px_50px] xl:p-[90px_110px]" v-for="(item, i) in 10" :key="i">
-                           <div class="flex items-center justify-center w-full h-full">
-                              <img src="/assets/images/image.png" alt="" />
+                     <Swiper
+                        effect="fade"
+                        :fade-effect="{ crossFade: true }"
+                        :thumbs="{
+                           swiper: thumbsSwiper
+                        }"
+                        :modules="[SwiperEffectFade, SwiperThumbs, SwiperAutoplay]"
+                        :loop="true"
+                        :autoplay="{
+                           delay: 3000,
+                           disableOnInteraction: false
+                        }"
+                        class="overflow-hidden"
+                        @swiper="setMainSwiper"
+                        @slideChange="onSlideChange"
+                     >
+                        <SwiperSlide v-for="(image, index) in product?.photo" :key="index" class="p-4 sm:p-[20px_25px] lg:p-[45px_50px] xl:p-[80px_100px]">
+                           <div class="flex items-center justify-center max-w-[750px] w-full">
+                              <img :src="'https://web.verel-auto.uz/site/images/products/' + image" alt="" class="w-full h-full object-cover" />
                            </div>
-                        </swiper-slide>
-                     </swiper>
+                        </SwiperSlide>
+                     </Swiper>
                   </div>
-                  <swiper :slidesPerView="4" :mousewheel="true" :modules="[SwiperMousewheel]" class="mt-6">
-                     <swiper-slide class="" v-for="(item, i) in 10" :key="i">
-                        <div class="flex items-center justify-center w-18 h-18 sm:w-32 sm:h-24 border rounded">
-                           <img src="/assets/images/image.png" alt="" class="w-14 h-14 sm:w-20 sm:h-20 object-contain" />
+                  <Swiper
+                     :space-between="10"
+                     :slides-per-view="4"
+                     :watch-slides-progress="true"
+                     :breakpoints="{
+                        0: {
+                           slidesPerView: 3
+                        },
+                        476: {
+                           slidesPerView: 4
+                        }
+                     }"
+                     :modules="[SwiperThumbs]"
+                     class="w-full mt-6"
+                     @swiper="setThumbsSwiper"
+                  >
+                     <SwiperSlide v-for="(image, index) in product?.photo" :key="index" class="relative overflow-hidden cursor-pointer group">
+                        <div class="flex items-center justify-center w-18 h-18 sm:w-32 sm:h-24 border rounded" :class="{ '!border-primary': activeIndex === index }">
+                           <img :src="'https://web.verel-auto.uz/site/images/products/' + image" alt="" class="w-14 h-14 sm:w-20 sm:h-20 object-contain" />
                         </div>
-                     </swiper-slide>
-                  </swiper>
+                     </SwiperSlide>
+                  </Swiper>
                </div>
             </div>
             <div class="xl:col-span-5">
                <div class="flex flex-col gap-10">
                   <div class="flex items-center justify-between">
-                     <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">GT320-5X</h2>
+                     <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">
+                        {{ product?.title?.uz }}
+                     </h2>
                      <a href="" class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                            <path
@@ -50,15 +82,7 @@
                   <div class="flex flex-col gap-4">
                      <h3 class="text-xl font-medium">Description</h3>
                      <ul class="flex flex-col gap-4">
-                        <li class="text-grey text-base">
-                           • High-speed and high-precision machining, widely used in die and mold, electronics, defense, aerospace and medical industries
-                        </li>
-                        <li class="text-grey text-base">
-                           • High-speed and high-precision machining, widely used in die and mold, electronics, defense, aerospace and medical industries
-                        </li>
-                        <li class="text-grey text-base">
-                           • High-speed and high-precision machining, widely used in die and mold, electronics, defense, aerospace and medical industries
-                        </li>
+                        <li class="text-grey text-base flex gap-1 items-center">• <span v-html="product?.descriptions?.uz"></span></li>
                      </ul>
                   </div>
                   <div class="flex flex-col gap-4">
@@ -112,7 +136,7 @@
                <h2 class="text-xl md:text-3xl xl:text-4xl font-semibold">Other products</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-               <UICard v-for="(item, i) in 10" :key="i" />
+               <UICard v-for="(item, i) in products" :key="i" :product="item" />
             </div>
          </section>
       </div>
@@ -121,9 +145,32 @@
 </template>
 
 <script setup>
-const thumbsSwiper = ref(null);
+import { useProductsStore } from '~/stores/products.js';
+import { useRoute } from 'vue-router';
+import { ref } from 'vue';
 
+const route = useRoute();
+
+const productsStore = useProductsStore();
+const { getProductId, getProducts } = productsStore;
+
+// swiper
+const mainSwiper = ref(null);
+const thumbsSwiper = ref(null);
+const activeIndex = ref(0);
+
+const setMainSwiper = (swiper) => {
+   mainSwiper.value = swiper;
+};
 const setThumbsSwiper = (swiper) => {
    thumbsSwiper.value = swiper;
 };
+const onSlideChange = () => {
+   activeIndex.value = mainSwiper.value.activeIndex;
+};
+
+const { data: product } = await useAsyncData('product', () => getProductId(route.params.slug), {
+   watch: [route.params.slug]
+});
+const { data: products } = await useAsyncData('products', getProducts);
 </script>

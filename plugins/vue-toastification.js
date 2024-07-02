@@ -1,12 +1,12 @@
 import Toast from 'vue-toastification';
-// Import the CSS or use your own!
-import 'vue-toastification/dist/index.css';
-import CustomComponent from '~/components/Common/Toast.vue';
+
+import UIToast from '~/components/Common/Toast.vue';
 
 const options = {
    hideProgressBar: true,
-   component: CustomComponent
-   // You can set your default options here
+   closeButton: false,
+   icon: false,
+   component: UIToast
 };
 
 export default defineNuxtPlugin((nuxtApp) => {

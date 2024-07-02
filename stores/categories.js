@@ -4,20 +4,20 @@ import { ref } from 'vue';
 
 export const useCategoriesStore = defineStore('categories', () => {
    const api = useApi();
-   const categories = ref([]);
+   const productsCategories = ref([]);
 
-   const getCategories = async () => {
+   const getProductsCategories = async () => {
       try {
-         const response = await api.get('categories/');
-         categories.value = response;
-         return response;
+         const response = await api.get('product-categories/');
+         productsCategories.value = response.data;
+         return response.data;
       } catch (error) {
          console.log('error');
       }
    };
 
    return {
-      getCategories,
-      categories
+      getProductsCategories,
+      productsCategories
    };
 });

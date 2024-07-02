@@ -1,23 +1,20 @@
 import { useToast } from 'vue-toastification';
-// import i18n from '@/plugins/i18n';
-import CToast from '@/components/Common/CToast.vue';
-
-// const { t } = i18n.global;
+import CToast from '@/components/Common/Toast.vue';
 
 export const useCustomToast = () => {
    const toast = useToast();
 
-   const showToast = (message, type = 'success', param) => {
+   const showToast = (text, type = 'success', param) => {
       const content = {
          component: CToast,
          props: {
-            message: t(message, param?.key ?? param?.value),
+            text: param?.key ? `${text} ${param?.key}` : text,
             type
          }
       };
 
       toast(content, {
-         type: type.toUpperCase()
+         type: type
       });
    };
 

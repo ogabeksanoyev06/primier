@@ -1,17 +1,17 @@
 <template>
    <div class="mt-20">
-      <div class="container">
-         <UICheckbox v-model="isChecked"> Check me! </UICheckbox>
-         <div class="max-w-[1200px] w-full flex flex-col items-center mx-auto gap-4">
+      <div class="container max-w-[1200px] w-full">
+         <div class="flex flex-col items-center mx-auto gap-4">
             <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">Financing / leasing</h2>
             <span class="text-base text-grey text-center">
                Stellen Sie Ihrem Unternehmen die bestmögliche Ausstattung ohne hohe Einmalkosten zur Verfügung!  Sprechen Sie uns an! Mit unseren Leasingpartnern investieren Sie in
                Ihre Zukunft. Planbar und liquiditätsschonend.
             </span>
          </div>
-         <div class="flex items-center lg:flex-row flex-col lg:gap-32 gap-6 justify-center mt-12">
-            <img src="/assets/images/ImageL1.png" alt="" class="w-[90%] sm:w-auto" />
-            <img src="/assets/images/Abcfinance-logo.png" alt="" class="w-[90%] sm:w-auto" />
+         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-32 mt-12">
+            <a :href="item.link" class="lg:hover:scale-105 transition-300 w-full h-[100px]" v-for="item in partners" :key="item">
+               <img :src="'https://web.verel-auto.uz/storage/' + item.photo" alt="Heroku" loading="lazy" class="h-full w-full object-cover rounded-xl" />
+            </a>
          </div>
          <div class="flex justify-center mt-24 mb-28">
             <UIButton class="!rounded-full">
@@ -26,4 +26,11 @@
    </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useCommonStore } from '~/stores/common.js';
+
+const commonStore = useCommonStore();
+const { getPartners } = commonStore;
+
+const { data: partners } = await useAsyncData('partners', getPartners);
+</script>
