@@ -1,5 +1,7 @@
-import { useToast } from 'vue-toastification';
+import Toastification from 'vue-toastification';
 import CToast from '@/components/Common/Toast.vue';
+
+const { useToast } = Toastification;
 
 export const useCustomToast = () => {
    const toast = useToast();
