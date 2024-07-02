@@ -3,7 +3,7 @@
       <div class="container">
          <section class="grid grid-cols-1 xl:grid-cols-9 gap-10 mt-20">
             <div class="xl:col-span-4">
-               <div class="sticky top-32">
+               <div class="sticky top-32 flex flex-col gap-y-6">
                   <div class="border rounded">
                      <Swiper
                         effect="fade"
@@ -22,16 +22,19 @@
                         @slideChange="onSlideChange"
                      >
                         <SwiperSlide v-for="(image, index) in product?.photo" :key="index" class="p-4 sm:p-[20px_25px] lg:p-[45px_50px] xl:p-[80px_100px]">
-                           <div class="flex items-center justify-center max-w-[750px] w-full">
-                              <img :src="'https://web.verel-auto.uz/site/images/products/' + image" alt="" class="w-full h-full object-cover" />
-                           </div>
+                           <img :src="'https://web.verel-auto.uz/site/images/products/' + image" alt="" class="w-full h-full object-cover" />
                         </SwiperSlide>
                      </Swiper>
                   </div>
                   <Swiper
                      :space-between="10"
                      :slides-per-view="4"
-                     :watch-slides-progress="true"
+                     :modules="[SwiperThumbs, SwiperAutoplay]"
+                     :loop="true"
+                     :autoplay="{
+                        delay: 3000,
+                        disableOnInteraction: false
+                     }"
                      :breakpoints="{
                         0: {
                            slidesPerView: 3
@@ -40,8 +43,7 @@
                            slidesPerView: 4
                         }
                      }"
-                     :modules="[SwiperThumbs]"
-                     class="w-full mt-6"
+                     class="w-full"
                      @swiper="setThumbsSwiper"
                   >
                      <SwiperSlide v-for="(image, index) in product?.photo" :key="index" class="relative overflow-hidden cursor-pointer group">
