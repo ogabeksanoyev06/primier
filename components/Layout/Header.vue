@@ -22,3 +22,9 @@
 </template>
 
 <script setup></script>
+
+<style scoped>
+.router-link-exact-active {
+   color: var(--primary);
+}
+</style>
