@@ -1,5 +1,5 @@
 import Toast from 'vue-toastification';
-
+import 'vue-toastification/dist/index.css';
 import UIToast from '~/components/Common/Toast.vue';
 
 const options = {

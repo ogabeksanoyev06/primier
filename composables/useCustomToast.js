@@ -1,26 +1,17 @@
-import Toastification from 'vue-toastification';
-import CToast from '@/components/Common/Toast.vue';
-
-const { useToast } = Toastification;
+import CustomToast from '~/components/Common/Toast.vue';
+import { useToast } from 'vue-toastification';
 
 export const useCustomToast = () => {
    const toast = useToast();
 
-   const showToast = (text, type = 'success', param) => {
-      const content = {
-         component: CToast,
+   const showToast = (text, type = 'success') => {
+      toast[type]({
+         component: CustomToast,
          props: {
-            text: param?.key ? `${text} ${param?.key}` : text,
-            type
+            text
          }
-      };
-
-      toast(content, {
-         type: type
       });
    };
 
-   return {
-      showToast
-   };
+   return { showToast };
 };

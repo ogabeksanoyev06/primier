@@ -25,20 +25,23 @@
                   class="w-full h-full text-base sm:text-sm text-black border-b border-secondary bg-transparent transition-300 py-4 outline-none placeholder:text-secondary placeholder:text-base"
                   required
                />
-               <input
-                  type="text"
-                  placeholder="Telefon raqamingiz"
-                  v-model="form.phone"
-                  class="w-full h-full text-base sm:text-sm text-black border-b border-secondary bg-transparent transition-300 py-4 outline-none placeholder:text-secondary placeholder:text-base"
-                  required
-               />
+               <ClientOnly>
+                  <input
+                     type="text"
+                     placeholder="Telefon raqamingiz"
+                     v-model="form.phone"
+                     v-maska="'+998 ## ###-##-##'"
+                     class="w-full h-full text-base sm:text-sm text-black border-b border-secondary bg-transparent transition-300 py-4 outline-none placeholder:text-secondary placeholder:text-base"
+                     required
+                  />
+               </ClientOnly>
             </div>
             <div class="flex sm:items-center justify-between sm:flex-row flex-col gap-5">
                <div class="max-w-[670px] w-full flex-1">
                   <UICheckbox v-model="form.agree">
                      <span class="text-secondary text-base leading-none">
-                        Отправляя форму вы даёте своё согласие на обработку персональных данных и соглашаетесь с политикой конфиденциальности</span
-                     >
+                        Отправляя форму вы даёте своё согласие на обработку персональных данных и соглашаетесь с политикой конфиденциальности
+                     </span>
                   </UICheckbox>
                </div>
                <UIButton :disabled="!isFormValid" class="!bg-white !rounded-full gap-2">
@@ -67,6 +70,13 @@ const form = reactive({
    agree: false
 });
 
+const resetForm = () => {
+   form.first_name = '';
+   form.last_name = '';
+   form.phone = '';
+   form.agree = false;
+};
+
 const isNameValid = computed(() => {
    const nameRegex = /^[A-Za-zА-Яа-яЁё']+$/;
    return nameRegex.test(form.first_name.trim()) && nameRegex.test(form.last_name.trim());
@@ -83,6 +93,7 @@ const submitForm = () => {
          last_name: form.last_name,
          phone_number: form.phone
       });
+      resetForm();
    }
 };
 </script>
