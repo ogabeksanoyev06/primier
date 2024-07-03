@@ -13,5 +13,8 @@ export default defineNuxtConfig({
       public: {
          apiBaseUrl: 'https://web.verel-auto.uz/api/'
       }
+   },
+   build: {
+      transpile: ['vue-toastification']
    }
 });
