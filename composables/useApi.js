@@ -9,7 +9,7 @@ export const useApi = () => {
    api.defaults.baseURL = config.public.apiBaseUrl;
    api.interceptors.request.use(
       (config) => {
-         config.headers['Language'] = 'uz';
+         // config.headers['Language'] = 'uz';
          return config;
       },
       (error) => Promise.reject(error)

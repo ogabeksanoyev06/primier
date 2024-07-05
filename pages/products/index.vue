@@ -12,7 +12,7 @@
                            class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer"
                            v-for="(item, i) in categories"
                            :key="i"
-                           :class="{ 'text-primary': isActiveCategory(item.id) }"
+                           :class="{ 'text-primary': item.id === currentCategory }"
                            @click="navigateToCategory(item.id)"
                         >
                            {{ item.title.uz }}
@@ -25,7 +25,7 @@
             <div class="lg:col-span-5">
                <div class="flex flex-col gap-10">
                   <div class="flex flex-col gap-6">
-                     {{ productCategory }}
+                     {{ products }}
                      <h3 class="text-xl sm:text-2xl font-medium">Серия DELTA CENTER</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <UICard v-for="(item, i) in 10" :key="i" />
@@ -45,7 +45,6 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useProductsStore } from '~/stores/products.js';
 import { useCategoriesStore } from '~/stores/categories.js';
@@ -59,19 +58,34 @@ const categoriesStore = useCategoriesStore();
 const { getProductCategoryId } = productsStore;
 const { getProductsCategories } = categoriesStore;
 
+const currentCategory = ref();
+
 const navigateToCategory = (categoryId) => {
    router.push({ query: { categoryId } });
 };
 
-const isActiveCategory = (categoryId) => {
-   return route.query.categoryId === categoryId;
-};
+watch(
+   () => route.query.categoryId,
+   (newCategoryId) => {
+      currentCategory.value = newCategoryId;
+   }
+);
 
 const { data: categories } = await useAsyncData('categories', async () => {
    return await getProductsCategories();
 });
 
-const { data: productCategory } = await useAsyncData('productCategory', async () => {
-   return await getProductCategoryId(route.query.categoryId);
-});
+currentCategory.value = route.query.categoryId || categories.value?.[0]?.id;
+
+const { data: products } = await useAsyncData(
+   'products',
+   async () => {
+      if (currentCategory.value || route.query.categoryId) {
+         return await getProductCategoryId(currentCategory.value);
+      }
+   },
+   {
+      watch: [() => route.query.categoryId]
+   }
+);
 </script>

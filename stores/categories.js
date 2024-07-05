@@ -12,7 +12,7 @@ export const useCategoriesStore = defineStore('categories', () => {
          productsCategories.value = response.data;
          return response.data;
       } catch (error) {
-         console.log('error');
+         console.log(error);
       }
    };
 
