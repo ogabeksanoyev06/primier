@@ -15,7 +15,7 @@
                            :class="{ 'text-primary': item.id === currentCategory }"
                            @click="navigateToCategory(item.id)"
                         >
-                           {{ item.title.uz }}
+                           {{ item?.title?.uz }}
                         </li>
                      </ul>
                   </div>
@@ -25,7 +25,6 @@
             <div class="lg:col-span-5">
                <div class="flex flex-col gap-10">
                   <div class="flex flex-col gap-6">
-                     {{ products }}
                      <h3 class="text-xl sm:text-2xl font-medium">Серия DELTA CENTER</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <UICard v-for="(item, i) in 10" :key="i" />
@@ -45,12 +44,12 @@
 </template>
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { useProductsStore } from '~/stores/products.js';
 import { useCategoriesStore } from '~/stores/categories.js';
 
-const router = useRouter();
 const route = useRoute();
+const currentCategory = ref(null);
 
 const productsStore = useProductsStore();
 const categoriesStore = useCategoriesStore();
@@ -58,10 +57,8 @@ const categoriesStore = useCategoriesStore();
 const { getProductCategoryId } = productsStore;
 const { getProductsCategories } = categoriesStore;
 
-const currentCategory = ref();
-
 const navigateToCategory = (categoryId) => {
-   router.push({ query: { categoryId } });
+   navigateTo({ query: { categoryId } });
 };
 
 watch(
@@ -75,7 +72,7 @@ const { data: categories } = await useAsyncData('categories', async () => {
    return await getProductsCategories();
 });
 
-currentCategory.value = route.query.categoryId || categories.value?.[0]?.id;
+currentCategory.value = route.query?.categoryId || categories.value?.[0]?.id;
 
 const { data: products } = await useAsyncData(
    'products',

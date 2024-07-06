@@ -1,12 +1,32 @@
 <template>
    <div class="relative mb-20">
-      <Swiper @swiper="onSwiper" :loop="true">
-         <SwiperSlide v-for="slide in 10" :key="slide">
-            <div class="">
-               <img src="/assets/images/swiper.png" alt="" class="h-full w-full object-cover" />
+      <Swiper
+         @swiper="onSwiper"
+         :modules="[SwiperAutoplay]"
+         :loop="true"
+         :autoplay="{
+            delay: 4000,
+            disableOnInteraction: true
+         }"
+         :breakpoints="{
+            476: {
+               slidesPerView: 1,
+               spaceBetween: 0
+            },
+
+            0: {
+               slidesPerView: 1,
+               spaceBetween: 8
+            }
+         }"
+      >
+         <SwiperSlide v-for="(slide, i) in banners" :key="i">
+            <div class="md:h-[550px] h-[350px]">
+               <img :src="'https://web.verel-auto.uz/storage/' + slide.photo" alt="" class="h-full w-full object-cover" />
             </div>
          </SwiperSlide>
       </Swiper>
+
       <div class="hidden md:block absolute top-1/2 -translate-y-1/2 z-50 w-full">
          <div class="container flex items-center justify-between w-full">
             <UIButton variant="outline" class="!px-0 !py-0 !w-14 !h-14 !rounded-full bg-white/20 border-white/60" @click="categorySwiper.slidePrev()">

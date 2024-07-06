@@ -174,5 +174,6 @@ const onSlideChange = () => {
 const { data: product } = await useAsyncData('product', () => getProductId(route.params.slug), {
    watch: [route.params.slug]
 });
+
 const { data: products } = await useAsyncData('products', getProducts);
 </script>

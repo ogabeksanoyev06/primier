@@ -8,9 +8,9 @@
                Ihre Zukunft. Planbar und liquiditätsschonend.
             </span>
          </div>
-         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-32 mt-12">
-            <a :href="item.link" class="lg:hover:scale-105 transition-300 w-full h-[100px]" v-for="item in partners" :key="item">
-               <img :src="'https://web.verel-auto.uz/storage/' + item.photo" alt="Heroku" loading="lazy" class="h-full w-full object-cover rounded-xl" />
+         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-x-32 gap-y-2 mt-12">
+            <a :href="item.link" target="_blank" class="lg:hover:scale-105 transition-300 max-w-[350px] sm:w-[auto] h-[100px]" v-for="item in partners" :key="item">
+               <img :src="'https://web.verel-auto.uz/storage/' + item.photo" alt="Heroku" loading="lazy" class="h-full w-full object-contain rounded-xl" />
             </a>
          </div>
          <div class="flex justify-center mt-24 mb-28">
@@ -27,10 +27,10 @@
 </template>
 
 <script setup>
-import { useCommonStore } from '~/stores/common.js';
+import { useMainStore } from '~/stores/main.js';
 
-const commonStore = useCommonStore();
-const { getPartners } = commonStore;
+const mainStore = useMainStore();
+const { getPartners } = mainStore;
 
 const { data: partners } = await useAsyncData('partners', getPartners);
 </script>

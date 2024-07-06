@@ -21,20 +21,13 @@
       </div>
       <section>
          <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold mb-4">Our clients</h2>
-         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-8">
-            <a :href="item.link" class="block lg:hover:scale-105 transition-300 w-full h-[100px]" v-for="item in partners" :key="item">
-               <img :src="'https://web.verel-auto.uz/storage/' + item.photo" alt="Heroku" loading="lazy" class="h-full w-full object-cover rounded-xl" />
+         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-4">
+            <a :href="item.link" target="_blank" class="block lg:hover:scale-105 transition-300 max-w-[250px] w-full h-[100px]" v-for="item in partners" :key="item">
+               <img :src="'https://web.verel-auto.uz/storage/' + item.photo" alt="Heroku" loading="lazy" class="h-full w-full object-contain rounded-xl" />
             </a>
          </div>
       </section>
    </div>
 </template>
 
-<script setup>
-import { useCommonStore } from '~/stores/common.js';
-
-const commonStore = useCommonStore();
-const { getPartners } = commonStore;
-
-const { data: partners } = await useAsyncData('partners', getPartners);
-</script>
+<script setup></script>

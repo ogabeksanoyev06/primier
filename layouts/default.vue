@@ -7,3 +7,12 @@
       <LayoutFooter />
    </div>
 </template>
+
+<script setup>
+
+const translations = reactive({
+   'main.header': "bosh qismi",
+   'main.footer': "past qismi"
+})
+
+</script>

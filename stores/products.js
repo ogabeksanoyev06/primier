@@ -1,17 +1,12 @@
 import { defineStore } from 'pinia';
 import { useApi } from '@/composables/useApi';
-import { ref } from 'vue';
 
 export const useProductsStore = defineStore('products', () => {
    const api = useApi();
-   const products = ref([]);
-   const productCategory = ref(null);
-   const product = ref(null);
 
    async function getProducts() {
       try {
-         const response = await api.get('products');
-         products.value = response.data;
+         const response = await api.get('api/products');
          return response.data;
       } catch (error) {
          console.log(error);
@@ -20,8 +15,7 @@ export const useProductsStore = defineStore('products', () => {
 
    async function getProductId(id) {
       try {
-         const response = await api.get(`products/${id}`);
-         product.value = response.data;
+         const response = await api.get(`api/products/${id}`);
          return response.data;
       } catch (error) {
          console.log(error);
@@ -30,8 +24,7 @@ export const useProductsStore = defineStore('products', () => {
 
    async function getProductCategoryId(id) {
       try {
-         const response = await api.get(`product-categories/${id}`);
-         productCategory.value = response.data;
+         const response = await api.get(`api/product-categories/${id}`);
          return response.data;
       } catch (error) {
          console.log(error);
@@ -41,9 +34,6 @@ export const useProductsStore = defineStore('products', () => {
    return {
       getProducts,
       getProductId,
-      getProductCategoryId,
-      products,
-      product,
-      productCategory
+      getProductCategoryId
    };
 });
