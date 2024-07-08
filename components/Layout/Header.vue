@@ -2,10 +2,10 @@
    <div class="bg-background py-2">
       <div class="container flex items-center lg:justify-end sm:gap-8 justify-between">
          <div class="">
-            <div class="flex items-center gap-1 cursor-pointer" @click="selectLang(langs[0])" v-if="selectedLang.id === 'ru'">
+            <div class="flex items-center gap-1 cursor-pointer" @click="selectLang(langs[0])" v-if="selectedLang.id === 'en'">
                <span> Русский </span>
             </div>
-            <div class="flex items-center gap-1 cursor-pointer" @click="selectLang(langs[1])" v-if="selectedLang.id === 'en'">
+            <div class="flex items-center gap-1 cursor-pointer" @click="selectLang(langs[1])" v-if="selectedLang.id === 'ru'">
                <span> English </span>
             </div>
          </div>
