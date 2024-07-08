@@ -138,7 +138,7 @@
                <h2 class="text-xl md:text-3xl xl:text-4xl font-semibold">Other products</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-               <UICard v-for="(item, i) in products" :key="i" :product="item" />
+               <UICard v-for="(item, i) in products" :key="i" :photo="item.photo" :id="item.id" />
             </div>
          </section>
       </div>

@@ -9,10 +9,20 @@
 </template>
 
 <script setup>
+import { useTranslationStore } from '~/stores/translations.js';
 
-const translations = reactive({
-   'main.header': "bosh qismi",
-   'main.footer': "past qismi"
-})
+const { locale } = useI18n();
 
+const translationsStore = useTranslationStore();
+
+const { getTranslation } = translationsStore;
+const { translations } = storeToRefs(translationsStore);
+
+await useAsyncData(
+   'translations',
+   () => {
+      return getTranslation();
+   },
+   { watch: [locale] }
+);
 </script>

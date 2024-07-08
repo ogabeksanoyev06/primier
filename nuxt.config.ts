@@ -10,15 +10,14 @@ export default defineNuxtConfig({
    modules: ['@nuxtjs/tailwindcss', '@nuxt/image', 'nuxt-swiper', '@nuxtjs/i18n', '@pinia/nuxt'],
 
    i18n: {
-      strategy: 'prefix_except_default',
-      locales: ['uz', 'ru'],
-      defaultLocale: 'ru',
+      locales: ['en', 'ru'],
+      defaultLocale: 'en',
       vueI18n: './i18n.config.ts'
    },
 
    runtimeConfig: {
       public: {
-         apiBaseUrl: process.env.NUXT_APP_BASE_URL || 'https://web.verel-auto.uz/'
+         apiBaseUrl: 'https://admin.priminer.uz'
       }
    },
 

@@ -22,7 +22,7 @@
                   <NuxtLink to="/" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Home </NuxtLink>
                   <NuxtLink to="/products" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Products </NuxtLink>
                   <NuxtLink to="/leasing" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Financing / leasing </NuxtLink>
-                  <NuxtLink to="/our-projects" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Our projects </NuxtLink>
+                  <NuxtLink to="/portfolios" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Our projects </NuxtLink>
                </nav>
             </div>
          </div>

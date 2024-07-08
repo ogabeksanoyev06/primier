@@ -15,7 +15,7 @@
                            :class="{ 'text-primary': item.id === currentCategory }"
                            @click="navigateToCategory(item.id)"
                         >
-                           {{ item?.title?.uz }}
+                           {{ item?.title?.en }}
                         </li>
                      </ul>
                   </div>
@@ -27,15 +27,15 @@
                   <div class="flex flex-col gap-6">
                      <h3 class="text-xl sm:text-2xl font-medium">Серия DELTA CENTER</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <UICard v-for="(item, i) in 10" :key="i" />
+                        <UICard v-for="(item, i) in products" :key="i" :photo="item.photo" :id="item.id" />
                      </div>
                   </div>
-                  <!-- <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-6">
                      <h3 class="text-xl sm:text-2xl font-medium">Серия VFxxxUHP для силовой и скоростной обработки</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <UICard v-for="(item, i) in 10" :key="i" />
+                        <UICard v-for="(item, i) in products" :key="i" :photo="item.photo" :id="item.id" />
                      </div>
-                  </div> -->
+                  </div>
                </div>
             </div>
          </div>

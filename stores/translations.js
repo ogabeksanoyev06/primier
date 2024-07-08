@@ -4,11 +4,11 @@ export const useTranslationStore = defineStore('translations', () => {
    const api = useApi();
 
    const translations = ref({});
-   async function getTranslation(params) {
+
+   async function getTranslation() {
       try {
-         let res = await api.get('api/tranlations', params);
+         let res = await api.get('api/translations');
          translations.value = res.data;
-         return res.data;
       } catch (error) {
          console.log(error);
       }

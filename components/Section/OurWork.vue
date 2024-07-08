@@ -1,7 +1,9 @@
 <template>
    <section class="bg-background py-[80px]">
       <div class="container space-y-10">
-         <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">What we did</h2>
+         <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">
+            {{ translations['main.what_we_did'] }}
+         </h2>
          <Swiper
             :modules="[SwiperAutoplay]"
             :spaceBetween="24"
@@ -51,5 +53,10 @@
 </template>
 
 <script setup>
-defineProps(['banners']);
+import { useTranslationStore } from '~/stores/translations';
+
+defineProps(['galeries']);
+
+const translationsStore = useTranslationStore();
+const { translations } = translationsStore;
 </script>

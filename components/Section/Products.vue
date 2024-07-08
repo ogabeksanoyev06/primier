@@ -20,13 +20,5 @@
 </template>
 
 <script setup>
-import { useProductsStore } from '~/stores/products.js';
-
-const productsStore = useProductsStore();
-
-const { getProducts } = productsStore;
-
-const { data: products } = await useAsyncData('products', async () => {
-   return await getProducts();
-});
+defineProps(['products']);
 </script>

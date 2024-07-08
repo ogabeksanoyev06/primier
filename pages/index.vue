@@ -1,27 +1,27 @@
 <template>
    <div>
-      <AboutSwiperImage />
+      <AboutSwiperImage :banners="data.banners" />
       <AboutCompanyInfo />
-      <SectionProducts />
-      <SectionOurWork />
+      <SectionProducts :products="data.products" />
+      <SectionOurWork :galeries="data.galeries" />
       <FormContactUs />
    </div>
 </template>
 
 <script setup>
 import { useMainStore } from '~/stores/main.js';
-import { useCommonStore } from '~/stores/common.js';
+import { useProductsStore } from '~/stores/products.js';
 
 const mainStore = useMainStore();
-const commonStore = useCommonStore();
+const productsStore = useProductsStore();
 
 const { getGaleries, getBanners, getPosts, getPartners } = mainStore;
-const { getTransitions } = commonStore;
+const { getProducts } = productsStore;
 
 const { data } = await useAsyncData('main', async () => {
-   const [translations, posts, banners, partners, galeries] = await Promise.all([getTransitions(), getPosts(), getBanners(), getPartners(), getGaleries()]);
+   const [posts, banners, partners, galeries, products] = await Promise.all([getPosts(), getBanners(), getPartners(), getGaleries(), getProducts()]);
 
-   return { translations, posts, banners, partners, galeries };
+   return { posts, banners, partners, galeries, products };
 });
 
 useHead(() => {

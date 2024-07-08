@@ -1,52 +1,26 @@
 <template>
    <div class="bg-background py-2">
       <div class="container flex items-center lg:justify-end sm:gap-8 justify-between">
-         <a href="#">+998 93 005 05 05</a>
          <div class="">
-            <div class="flex items-center gap-1 cursor-pointer">
-               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <mask id="mask0_9302_12006" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
-                     <path d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20Z" fill="#F4F5F5"></path>
-                  </mask>
-                  <g mask="url(#mask0_9302_12006)">
-                     <rect width="20" height="20" fill="#0099B5"></rect>
-                     <rect y="13" width="20" height="7" fill="#1EB53A"></rect>
-                     <rect y="13" width="20" height="1" fill="#CE1126"></rect>
-                     <rect y="6" width="20" height="1" fill="#CE1126"></rect>
-                     <rect y="6.5" width="20" height="7" fill="white"></rect>
-                  </g>
-               </svg>
-               <span> Оʻzbekcha </span>
-            </div>
-            <div class="flex items-center gap-1 cursor-pointer" v-if="false">
-               <svg width="20" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <mask id="mask0_9302_3025" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="21">
-                     <path
-                        d="M10 20.5C15.5228 20.5 20 16.0228 20 10.5C20 4.97715 15.5228 0.5 10 0.5C4.47715 0.5 0 4.97715 0 10.5C0 16.0228 4.47715 20.5 10 20.5Z"
-                        fill="#F4F5F5"
-                     ></path>
-                  </mask>
-                  <g mask="url(#mask0_9302_3025)">
-                     <rect y="0.5" width="20" height="20" fill="white"></rect>
-                     <rect y="13.5" width="20" height="7" fill="#E63838"></rect>
-                     <rect y="7" width="20" height="7" fill="#3131C4"></rect>
-                  </g>
-               </svg>
+            <div class="flex items-center gap-1 cursor-pointer" @click="selectLang(langs[0])" v-if="selectedLang.id === 'ru'">
                <span> Русский </span>
+            </div>
+            <div class="flex items-center gap-1 cursor-pointer" @click="selectLang(langs[1])" v-if="selectedLang.id === 'en'">
+               <span> English </span>
             </div>
          </div>
       </div>
    </div>
    <header class="sticky z-40 top-0 bg-background/80 backdrop-blur-lg border-b border-border">
       <div class="container flex-y-center justify-between h-20 sm:h-[--header-height]">
-         <NuxtLink to="/" class="flex-shrink-0">
+         <NuxtLink :to="localePath('/')" class="flex-shrink-0">
             <img src="/assets/svg/logo.svg" alt="" />
          </NuxtLink>
          <nav class="hidden md:flex items-center md:gap-6 lg:gap-16 xl:gap-[90px] transition-all duration-300">
-            <NuxtLink to="/" class="text-base font-medium transition-colors hover:text-primary"> Home </NuxtLink>
-            <NuxtLink to="/products" class="text-base font-medium transition-colors hover:text-primary">Products</NuxtLink>
-            <NuxtLink to="/leasing" class="text-base font-medium transition-colors hover:text-primary">Financing / leasing</NuxtLink>
-            <NuxtLink to="/our-projects" class="text-base font-medium transition-colors hover:text-primary">Our projects</NuxtLink>
+            <NuxtLink :to="localePath('/')" class="text-base font-medium transition-colors hover:text-primary"> {{ translations['header.home'] }} </NuxtLink>
+            <NuxtLink :to="localePath('products')" class="text-base font-medium transition-colors hover:text-primary">{{ translations['header.products'] }} </NuxtLink>
+            <NuxtLink :to="localePath('leasing')" class="text-base font-medium transition-colors hover:text-primary">{{ translations['header.leasing'] }} </NuxtLink>
+            <NuxtLink :to="localePath('portfolios')" class="text-base font-medium transition-colors hover:text-primary">{{ translations['header.projects'] }} </NuxtLink>
          </nav>
          <button class="md:hidden flex items-center justify-center w-10 h-10 rounded-sm border" @click="navigationDrawer = true">
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,6 +39,15 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
+import { useTranslationStore } from '~/stores/translations.js';
+
+const localePath = useLocalePath();
+
+const { setLocale, locale } = useI18n();
+
+const translationsStore = useTranslationStore();
+
+const { translations } = storeToRefs(translationsStore);
 
 const route = useRoute();
 
@@ -73,30 +56,28 @@ const navigationDrawer = ref(false);
 const langs = [
    {
       id: 'ru',
-      label: 'Русский',
-      click: () => {
-         selectedLang.value = langs[0];
-      }
-   },
-   {
-      id: 'uz',
-      label: "O'zbek",
-      click: () => {
-         selectedLang.value = langs[1];
-      }
+      label: 'Русский'
    },
    {
       id: 'en',
-      label: 'English',
-      click: () => {
-         selectedLang.value = langs[2];
-      }
+      label: 'English'
    }
 ];
+
+const selectedLang = ref(langs.find((lang) => lang.id === locale.value));
+
+const selectLang = (lang) => {
+   selectedLang.value = lang;
+   setLocale(lang.id);
+};
 
 function closeDrawer() {
    navigationDrawer.value = false;
 }
+
+watch(selectedLang, (newVal) => {
+   setLocale(newVal.id);
+});
 
 watch(navigationDrawer, () => {
    if (navigationDrawer.value) {

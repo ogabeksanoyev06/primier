@@ -6,7 +6,7 @@ export const useMainStore = defineStore('main', () => {
 
    async function getPosts() {
       try {
-         const response = await api.get('api/posts');
+         const response = await api.get('/api/posts');
          return response.data;
       } catch (error) {
          console.log(error);
@@ -14,7 +14,7 @@ export const useMainStore = defineStore('main', () => {
    }
    async function getPartners() {
       try {
-         const response = await api.get('api/partners');
+         const response = await api.get('/api/partners');
          return response.data;
       } catch (error) {
          console.log(error);
@@ -22,21 +22,19 @@ export const useMainStore = defineStore('main', () => {
    }
    async function getBanners() {
       try {
-         const response = await api.get('api/banners');
+         const response = await api.get('/api/banners');
          return response.data;
       } catch (error) {
          console.log(error);
       }
-      s;
    }
    async function getGaleries() {
       try {
-         const response = await api.get('api/galeries');
+         const response = await api.get('/api/galeries');
          return response.data;
       } catch (error) {
          console.log(error);
       }
-      s;
    }
 
    return {

@@ -6,21 +6,15 @@
                <img src="/assets/images/transformer.png" alt="" class="w-full h-full" />
             </div>
             <div class="flex flex-col max-w-[780px] w-full lg:flex-1 pt-4 md:pt-8 lg:py-12 order-1 lg:order-2">
-               <h4 class="text-grey text-lg mb-4">About us</h4>
-               <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold mb-6">Development, application of the latest technologies and innovative solutions</h2>
-               <p class="text-grey text-lg mb-6">
-                  Узбекско-германское совместное предприятие «PRIMINER» начало свою деятельность в области высокоточного и высокопроизводственного токарного, фрезерного,
-                  карусельного и лазерного станкостроения и производства технологий «под ключ» в области металлообработки в 2023 году.
-               </p>
-               <p class="text-grey text-lg">
-                  Огромная производственная база, доступ к новейшим технологиям и сервисные возможности позволяют участникам проекта успешно осуществлять план организации
-                  собственного производства станков в Республике Узбекистан.
-               </p>
+               <h4 class="text-grey text-lg mb-4">{{ translations['main.about_title'] }}</h4>
+               <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold mb-6">{{ translations['main.about_subtitle'] }}</h2>
+               <p class="text-grey text-lg mb-6">{{ translations['main.about_text1'] }}</p>
+               <p class="text-grey text-lg">{{ translations['main.about_text2'] }}</p>
             </div>
          </div>
       </div>
       <section>
-         <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold mb-4">Our clients</h2>
+         <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold mb-4">{{ translations['main.clients'] }}</h2>
          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-4">
             <a :href="item.link" target="_blank" class="block lg:hover:scale-105 transition-300 max-w-[250px] w-full h-[100px]" v-for="item in partners" :key="item">
                <img :src="'https://web.verel-auto.uz/storage/' + item.photo" alt="Heroku" loading="lazy" class="h-full w-full object-contain rounded-xl" />
@@ -30,4 +24,9 @@
    </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useTranslationStore } from '~/stores/translations';
+
+const translationsStore = useTranslationStore();
+const { translations } = translationsStore;
+</script>

@@ -5,7 +5,7 @@
          <section class="flex flex-col gap-6">
             <div class="flex border rounded overflow-hidden flex-col lg:flex-row lg:even:flex-row-reverse" v-for="(item, i) in portfolios" :key="i">
                <div class="flex items-stretch lg:max-w-[530px] h-[350px] lg:h-[450px] w-full">
-                  <img :src="'https://web.verel-auto.uz/storage/' + item.photo" alt="" class="w-full h-full object-cover" />
+                  <img :src="useRuntimeConfig().public.apiBaseUrl + item.photo" alt="" class="w-full h-full object-cover" />
                </div>
                <div class="p-4 xl:p-10 lg:w-[calc(100%-530px)]">
                   <h4 class="text-lg mb-4">
