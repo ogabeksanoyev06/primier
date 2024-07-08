@@ -1,7 +1,7 @@
 <template>
    <div>
       <AboutSwiperImage :banners="data.banners" />
-      <AboutCompanyInfo />
+      <AboutCompanyInfo :partners="data.partners" />
       <SectionProducts :products="data.products" />
       <SectionOurWork :galeries="data.galeries" />
       <FormContactUs />

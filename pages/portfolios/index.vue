@@ -1,7 +1,9 @@
 <template>
    <div class="mt-20">
       <div class="container flex flex-col gap-20 mb-20">
-         <h2 class="text-2xl md:text-3xl xl:text-4xl text-center font-semibold">Our projects</h2>
+         <h2 class="text-2xl md:text-3xl xl:text-4xl text-center font-semibold">
+            {{ translations['projects.title'] }}
+         </h2>
          <section class="flex flex-col gap-6">
             <div class="flex border rounded overflow-hidden flex-col lg:flex-row lg:even:flex-row-reverse" v-for="(item, i) in portfolios" :key="i">
                <div class="flex items-stretch lg:max-w-[530px] h-[350px] lg:h-[450px] w-full">
@@ -27,13 +29,8 @@
 </template>
 
 <script setup>
-import { usePortfolioStore } from '~/stores/portfolio.js';
+import { useTranslationStore } from '~/stores/translations';
 
-const portfolioStore = usePortfolioStore();
-
-const { getPortfolios } = portfolioStore;
-
-const { data: portfolios } = await useAsyncData('portfolios', async () => {
-   return await getPortfolios();
-});
+const translationsStore = useTranslationStore();
+const { translations } = translationsStore;
 </script>

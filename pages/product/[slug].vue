@@ -22,7 +22,7 @@
                         @slideChange="onSlideChange"
                      >
                         <SwiperSlide v-for="(image, index) in product?.photo" :key="index" class="p-4 sm:p-[20px_25px] lg:p-[45px_50px] xl:p-[80px_100px]">
-                           <img :src="'https://web.verel-auto.uz/site/images/products/' + image" alt="" class="w-full h-full object-cover" />
+                           <img :src="`${useRuntimeConfig().public.apiBaseUrl}/site/images/products/${image}`" alt="" class="w-full h-full object-cover" />
                         </SwiperSlide>
                      </Swiper>
                   </div>
@@ -48,7 +48,7 @@
                   >
                      <SwiperSlide v-for="(image, index) in product?.photo" :key="index" class="relative overflow-hidden cursor-pointer group">
                         <div class="flex items-center justify-center w-18 h-18 sm:w-32 sm:h-24 border rounded" :class="{ '!border-primary': activeIndex === index }">
-                           <img :src="'https://web.verel-auto.uz/site/images/products/' + image" alt="" class="w-14 h-14 sm:w-20 sm:h-20 object-contain" />
+                           <img :src="`${useRuntimeConfig().public.apiBaseUrl}/site/images/products/${image}`" alt="" class="w-14 h-14 sm:w-20 sm:h-20 object-contain" />
                         </div>
                      </SwiperSlide>
                   </Swiper>
@@ -58,7 +58,7 @@
                <div class="flex flex-col gap-10">
                   <div class="flex items-center justify-between">
                      <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">
-                        {{ product?.title?.uz }}
+                        {{ product.title[$i18n.locale] }}
                      </h2>
                      <a href="" class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -84,7 +84,7 @@
                   <div class="flex flex-col gap-4">
                      <h3 class="text-xl font-medium">Description</h3>
                      <ul class="flex flex-col gap-4">
-                        <li class="text-grey text-base flex gap-1 items-center">• <span v-html="product?.descriptions?.uz"></span></li>
+                        <li class="text-grey text-base flex gap-1 items-center"><span v-html="product?.descriptions[$i18n.locale]"></span></li>
                      </ul>
                   </div>
                   <div class="flex flex-col gap-4">
@@ -135,10 +135,12 @@
          </section>
          <section class="flex flex-col gap-10 my-20">
             <div class="flex items-center justify-between">
-               <h2 class="text-xl md:text-3xl xl:text-4xl font-semibold">Other products</h2>
+               <h2 class="text-xl md:text-3xl xl:text-4xl font-semibold">
+                  {{ translations['products.other_products'] }}
+               </h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-               <UICard v-for="(item, i) in products" :key="i" :photo="item.photo" :id="item.id" />
+               <UICard v-for="(item, i) in products" :key="i" :photo="item.photo[0]" :id="item.id" />
             </div>
          </section>
       </div>
@@ -147,14 +149,18 @@
 </template>
 
 <script setup>
-import { useProductsStore } from '~/stores/products.js';
-import { useRoute } from 'vue-router';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useProductsStore } from '~/stores/products.js';
+import { useTranslationStore } from '~/stores/translations';
 
 const route = useRoute();
 
 const productsStore = useProductsStore();
+const translationsStore = useTranslationStore();
+
 const { getProductId, getProducts } = productsStore;
+const { translations } = translationsStore;
 
 // swiper
 const mainSwiper = ref(null);

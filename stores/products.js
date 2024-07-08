@@ -6,7 +6,7 @@ export const useProductsStore = defineStore('products', () => {
 
    async function getProducts() {
       try {
-         const response = await api.get('api/products');
+         const response = await api.get('/api/products');
          return response.data;
       } catch (error) {
          console.log(error);
@@ -22,9 +22,9 @@ export const useProductsStore = defineStore('products', () => {
       }
    }
 
-   async function getProductCategoryId(id) {
+   async function getProductCategoryId(params) {
       try {
-         const response = await api.get(`api/product-categories/${id}`);
+         const response = await api.get(`/api/product/category/`, { params });
          return response.data;
       } catch (error) {
          console.log(error);

@@ -6,7 +6,7 @@ export const useCategoriesStore = defineStore('categories', () => {
 
    const getProductsCategories = async () => {
       try {
-         const response = await api.get('api/product-categories/');
+         const response = await api.get('/api/product-categories/');
          return response.data;
       } catch (error) {
          console.log(error);
