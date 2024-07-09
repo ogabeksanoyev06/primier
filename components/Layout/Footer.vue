@@ -29,7 +29,7 @@
                      <p>с 9:00 до 18:00 (пн-пт)</p>
                   </div> -->
                </div>
-               <div style="position: relative; overflow: hidden">
+               <div style="position: relative; overflow: hidden" class="rounded">
                   <iframe
                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2340.344768927145!2d10.003389876595802!3d54.08536237251286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b24be73e946e1b%3A0x7e070ca3ef6de1ed!2zVHVuZ2VuZG9yZmVyIFN0ci4gMTAsIDI0NTM2IE5ldW3DvG5zdGVyLCDQk9C10YDQvNCw0L3QuNGP!5e0!3m2!1sru!2s!4v1720440350606!5m2!1sru!2s"
                      width="600"
@@ -68,7 +68,7 @@
                      <p>с 9:00 до 18:00 (пн-пт)</p>
                   </div> -->
                </div>
-               <div style="position: relative; overflow: hidden">
+               <div style="position: relative; overflow: hidden" class="rounded">
                   <iframe
                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1415.4196801400776!2d20.426954946984026!3d44.804462326491084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a6ff119ea1e25%3A0x8a6434013135bb21!2z0JLQu9Cw0LTQuNC80LjRgNCwINCf0L7Qv9C-0LLQuNGb0LAgMzgtNDAsINCR0LXQvtCz0YDQsNC0LCDQodC10YDQsdC40Y8!5e0!3m2!1sru!2s!4v1720440256513!5m2!1sru!2s"
                      width="600"
@@ -107,7 +107,7 @@
                      <p>с 9:00 до 18:00 (пн-пт)</p>
                   </div> -->
                </div>
-               <div style="position: relative; overflow: hidden">
+               <div style="position: relative; overflow: hidden" class="rounded">
                   <iframe
                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3677.600458577034!2d113.96469407502275!3d22.8172639793182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403855a416d16dd%3A0xce3502240dd8aa1c!2sHengyi%20Industrial%20Park!5e0!3m2!1sru!2s!4v1720439859437!5m2!1sru!2s"
                      width="600"

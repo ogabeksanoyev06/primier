@@ -18,7 +18,7 @@ const translationsStore = useTranslationStore();
 const { getTranslation } = translationsStore;
 const { translations } = storeToRefs(translationsStore);
 
-await useAsyncData(
+const { data } = await useAsyncData(
    'translations',
    () => {
       return getTranslation();

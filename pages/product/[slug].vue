@@ -12,7 +12,7 @@
                            swiper: thumbsSwiper
                         }"
                         :modules="[SwiperEffectFade, SwiperThumbs, SwiperAutoplay]"
-                        :loop="true"
+                        loop="true"
                         :autoplay="{
                            delay: 3000,
                            disableOnInteraction: false
@@ -30,7 +30,7 @@
                      :space-between="10"
                      :slides-per-view="4"
                      :modules="[SwiperThumbs, SwiperAutoplay]"
-                     :loop="true"
+                     loop="true"
                      :autoplay="{
                         delay: 3000,
                         disableOnInteraction: false

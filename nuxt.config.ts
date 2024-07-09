@@ -2,6 +2,15 @@ export default defineNuxtConfig({
    ssr: true,
    devtools: { enabled: true },
    app: {
+      head: {
+         link: [
+            {
+               rel: 'icon',
+               type: 'image/svg',
+               href: '/favicon.svg'
+            }
+         ]
+      },
       pageTransition: { name: 'page', mode: 'out-in' },
       layoutTransition: { name: 'layout', mode: 'out-in' }
    },

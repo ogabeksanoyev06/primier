@@ -26,7 +26,7 @@
                   <div class="flex flex-col gap-6">
                      <h3 class="text-xl sm:text-2xl font-medium">Серия DELTA CENTER</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <UICard v-for="(item, i) in products" :key="i" :photo="item?.photo[0]" :id="item?.id" />
+                        <UICard v-for="(item, i) in productCategories" :key="i" :photo="item?.photo[0]" :id="item?.id" />
                      </div>
                   </div>
                   <!-- <div class="flex flex-col gap-6">
@@ -74,10 +74,10 @@ const { data: categories } = await useAsyncData('product-categories', async () =
    return await getProductsCategories();
 });
 
-currentCategory.value = route.query?.categoryId || categories.value?.[0]?.id;
+currentCategory.value = Number(route.query?.categoryId || categories.value?.[0]?.id);
 
-const { data: products } = await useAsyncData(
-   'products',
+const { data: productCategories } = await useAsyncData(
+   'product-categories',
    async () => {
       if (currentCategory.value || route.query.categoryId) {
          return await getProductCategoryId({

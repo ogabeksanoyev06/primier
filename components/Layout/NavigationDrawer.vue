@@ -19,10 +19,14 @@
             </div>
             <div class="relative overflow-hidden h-[calc(100vh-8rem)]">
                <nav class="h-full w-full flex flex-col rounded-md bg-white p-1" style="overflow: hidden scroll">
-                  <NuxtLink to="/" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Home </NuxtLink>
-                  <NuxtLink to="/products" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Products </NuxtLink>
-                  <NuxtLink to="/leasing" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Financing / leasing </NuxtLink>
-                  <NuxtLink to="/portfolios" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Our projects </NuxtLink>
+                  <NuxtLink :to="localePath('/')" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Home </NuxtLink>
+                  <NuxtLink :to="localePath('/products')" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100"> Products </NuxtLink>
+                  <NuxtLink :to="localePath('/leasing')" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100">
+                     Financing / leasing
+                  </NuxtLink>
+                  <NuxtLink :to="localePath('/portfolios')" class="rounded-[4px] px-4 py-2 text-base transition-colors hover:text-primary hover:bg-gray-100">
+                     Our projects
+                  </NuxtLink>
                </nav>
             </div>
          </div>
@@ -41,6 +45,8 @@ defineProps({
 });
 
 const emit = defineEmits(['closeNavigationDrawer']);
+
+const localePath = useLocalePath();
 
 function closeDrawer() {
    emit('closeNavigationDrawer');
