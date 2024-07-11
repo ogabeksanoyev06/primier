@@ -43,9 +43,7 @@
                      <h3 class="text-2xl font-semibold">
                         {{ item.title[$i18n.locale] }}
                      </h3>
-                     <p class="text-base text-[#353437] font-medium">
-                        {{ item.descriptions[$i18n.locale] }}
-                     </p>
+                     <div class="text-base text-[#353437] font-medium" v-html="item.descriptions[$i18n.locale]"></div>
                   </div>
                </div>
             </SwiperSlide>
