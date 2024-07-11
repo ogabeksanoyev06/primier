@@ -15,14 +15,14 @@
                         loop="true"
                         :autoplay="{
                            delay: 3000,
-                           disableOnInteraction: false
+                           disableOnInteraction: true
                         }"
-                        class="overflow-hidden"
+                        class="overflow-hidden sm:h-[600px]"
                         @swiper="setMainSwiper"
                         @slideChange="onSlideChange"
                      >
                         <SwiperSlide v-for="(image, index) in product?.photo" :key="index" class="p-4 sm:p-[20px_25px] lg:p-[45px_50px] xl:p-[80px_100px]">
-                           <img :src="`${useRuntimeConfig().public.apiBaseUrl}/site/images/products/${image}`" alt="" class="w-full h-full object-cover" />
+                           <img :src="`${useRuntimeConfig().public.apiBaseUrl}/site/images/products/${image}`" alt="" class="w-full h-full object-contain" />
                         </SwiperSlide>
                      </Swiper>
                   </div>
@@ -58,7 +58,7 @@
                <div class="flex flex-col gap-10">
                   <div class="flex items-center justify-between">
                      <h2 class="text-xl md:text-3xl xl:text-[40px] font-medium">
-                        {{ product.title[$i18n.locale] }}
+                        {{ product?.title[$i18n.locale] }}
                      </h2>
                      <a href="" class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -87,10 +87,10 @@
                         <li class="text-grey text-base flex gap-1 items-center"><span v-html="product?.descriptions[$i18n.locale]"></span></li>
                      </ul>
                   </div>
-                  <div class="flex flex-col gap-4">
+                  <div class="flex flex-col gap-4" v-if="product.standard_key">
                      <h3 class="text-xl font-medium">standard configuration</h3>
                      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <li class="flex items-start gap-2">
+                        <li class="flex items-start gap-2" v-for="(item, i) in product?.standard_key[$i18n.locale]" :key="i">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path
                                  fill-rule="evenodd"
@@ -99,7 +99,9 @@
                                  fill="#B3CF1D"
                               />
                            </svg>
-                           <span class="text-grey flex-1">Fully enclosed splash guard</span>
+                           <span class="text-grey flex-1">
+                              {{ item }}
+                           </span>
                         </li>
                         <li class="flex items-start gap-2">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,10 +116,10 @@
                         </li>
                      </ul>
                   </div>
-                  <div class="flex flex-col gap-4">
+                  <div class="flex flex-col gap-4" v-if="product.optional_key">
                      <h3 class="text-xl font-medium">Optional configuration</h3>
                      <ul class="flex flex-col gap-3">
-                        <li class="flex items-start gap-2" v-for="(item, i) in 10" :key="i">
+                        <li class="flex items-start gap-2" v-for="(item, i) in product?.optional_key[$i18n.locale]" :key="i">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path
                                  fill-rule="evenodd"
@@ -126,7 +128,9 @@
                                  fill="#B3CF1D"
                               />
                            </svg>
-                           <span class="text-grey">Built-in spindle HSK A100 15000 rpm_40/50kW_103/129Nm, 40 pockets tool changer</span>
+                           <span class="text-grey">
+                              {{ item }}
+                           </span>
                         </li>
                      </ul>
                   </div>
@@ -160,7 +164,7 @@ const productsStore = useProductsStore();
 const translationsStore = useTranslationStore();
 
 const { getProductId, getProducts } = productsStore;
-const { translations } = translationsStore;
+const { translations } = storeToRefs(translationsStore);
 
 // swiper
 const mainSwiper = ref(null);

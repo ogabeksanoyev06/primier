@@ -68,7 +68,7 @@ const translationsStore = useTranslationStore();
 const applicationStore = useAplicationStore();
 
 const { sendAplication } = applicationStore;
-const { translations } = translationsStore;
+const { translations } = storeToRefs(translationsStore);
 
 const form = reactive({
    first_name: '',

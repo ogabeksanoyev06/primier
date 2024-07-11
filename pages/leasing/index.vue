@@ -20,7 +20,7 @@
                <span class="text-base text-grey"> 6. {{ translations['leasing.text6'] }} </span>
             </div>
          </div>
-         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-x-32 gap-y-2 mt-12">
+         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-x-32 gap-y-2 mt-12 mb-20">
             <svg width="570" height="60" viewBox="0 0 570 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                <rect width="570" height="60" fill="url(#pattern0_116_1130)" />
                <defs>
@@ -50,14 +50,6 @@
                </defs>
             </svg>
          </div>
-         <div class="flex justify-center mt-24 mb-28">
-            <UIButton class="!rounded-full">
-               <span class="text-base">Impressum</span>
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M14 16L18 12M18 12L14 8M18 12L6 12" stroke="#020105" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-               </svg>
-            </UIButton>
-         </div>
       </div>
       <FormContactUs />
    </div>
@@ -67,5 +59,5 @@
 import { useTranslationStore } from '~/stores/translations';
 
 const translationsStore = useTranslationStore();
-const { translations } = translationsStore;
+const { translations } = storeToRefs(translationsStore);
 </script>

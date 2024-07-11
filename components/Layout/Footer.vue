@@ -1,7 +1,9 @@
 <template>
    <footer class="bg-background py-[80px]">
       <div class="container flex flex-col gap-6 sm:gap-10">
-         <h1 class="font-semibold text-2xl md:text-3xl xl:text-4xl">Contact us</h1>
+         <h1 class="font-semibold text-2xl md:text-3xl xl:text-4xl">
+            {{ translations['main.contact_us'] }}
+         </h1>
          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="flex flex-col gap-4 sm:gap-8 bg-white rounded p-4 sm:p-8">
                <h3 class="text-xl font-medium">
@@ -24,6 +26,7 @@
                         {{ translations['footer.contacts.phone1'] }}
                      </a>
                   </div>
+
                   <!-- <div class="flex flex-col gap-2">
                      <p class="font-medium">Время работы</p>
                      <p>с 9:00 до 18:00 (пн-пт)</p>
@@ -61,6 +64,12 @@
                      <p class="font-medium">Телефон для связи</p>
                      <a :href="`tel:${translations['footer.contacts.phone2']}`">
                         {{ translations['footer.contacts.phone2'] }}
+                     </a>
+                  </div>
+                  <div class="flex flex-col gap-2">
+                     <p class="font-medium">Fax</p>
+                     <a :href="`tel:${translations['footer.contacts.fax2']}`">
+                        {{ translations['footer.contacts.fax2'] }}
                      </a>
                   </div>
                   <!-- <div class="flex flex-col gap-2">
@@ -102,6 +111,12 @@
                         {{ translations['footer.contacts.phone3'] }}
                      </a>
                   </div>
+                  <div class="flex flex-col gap-2">
+                     <p class="font-medium">Fax</p>
+                     <a :href="`tel:${translations['footer.contacts.fax3']}`">
+                        {{ translations['footer.contacts.fax3'] }}
+                     </a>
+                  </div>
                   <!-- <div class="flex flex-col gap-2">
                      <p class="font-medium">Время работы</p>
                      <p>с 9:00 до 18:00 (пн-пт)</p>
@@ -129,5 +144,5 @@
 import { useTranslationStore } from '~/stores/translations';
 
 const translationsStore = useTranslationStore();
-const { translations } = translationsStore;
+const { translations } = storeToRefs(translationsStore);
 </script>

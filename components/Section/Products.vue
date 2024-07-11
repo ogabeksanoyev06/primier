@@ -29,5 +29,5 @@ defineProps(['products']);
 const localePath = useLocalePath();
 
 const translationsStore = useTranslationStore();
-const { translations } = translationsStore;
+const { translations } = storeToRefs(translationsStore);
 </script>
