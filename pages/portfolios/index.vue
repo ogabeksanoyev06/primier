@@ -5,8 +5,12 @@
             {{ translations['projects.title'] }}
          </h2>
          <section class="flex flex-col gap-6">
-            <div class="flex border rounded overflow-hidden flex-col lg:flex-row lg:even:flex-row-reverse max-w-[1200px] w-full mx-auto" v-for="(item, i) in portfolios" :key="i">
-               <div class="flex items-stretch lg:max-w-[530px] sm:h-[350px] lg:h-[450px] w-full">
+            <div
+               class="flex border rounded overflow-hidden flex-col lg:items-center lg:flex-row lg:even:flex-row-reverse max-w-[1200px] w-full mx-auto"
+               v-for="(item, i) in portfolios"
+               :key="i"
+            >
+               <div class="flex items-stretch lg:max-w-[530px] sm:h-[350px] lg:h-[400px] w-full">
                   <img :src="`${useRuntimeConfig().public.apiBaseUrl}/storage/${item.photo}`" alt="Heroku" loading="lazy" class="h-full w-full object-cover" />
                </div>
                <div class="p-4 xl:p-10 lg:w-[calc(100%-530px)]">

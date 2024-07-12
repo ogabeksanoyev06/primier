@@ -81,7 +81,7 @@
                         <span class="text-base text-grey">Data sheet</span>
                      </a>
                   </div>
-                  <div class="flex flex-col gap-4">
+                  <div class="flex flex-col gap-4" v-if="product?.descriptions">
                      <h3 class="text-xl font-medium">Description</h3>
                      <ul class="flex flex-col gap-4">
                         <li class="text-grey text-base flex gap-1 items-center"><span v-html="product?.descriptions[$i18n.locale]"></span></li>
@@ -144,7 +144,7 @@
                </h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-               <UICard v-for="(item, i) in products" :key="i" :photo="item.photo[0]" :id="item.id" />
+               <UICard v-for="(item, i) in products" :key="i" :photo="item.photo[0]" :id="item.id" :title="item.title[$i18n.locale]" />
             </div>
          </section>
       </div>

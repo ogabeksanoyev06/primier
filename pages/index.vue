@@ -11,18 +11,15 @@
 <script setup>
 import { useMainStore } from '~/stores/main.js';
 import { useProductsStore } from '~/stores/products.js';
-import { usePortfolioStore } from '~/stores/portfolio.js';
 
 const mainStore = useMainStore();
 const productsStore = useProductsStore();
-const portfolioStore = usePortfolioStore();
 
-const { getBanners, getPartners } = mainStore;
+const { getBanners, getPartners, getGaleries } = mainStore;
 const { getProducts } = productsStore;
-const { getPortfolios } = portfolioStore;
 
 const { data } = await useAsyncData('main', async () => {
-   const [banners, partners, galeries, products] = await Promise.all([getBanners(), getPartners(), getPortfolios(), getProducts()]);
+   const [banners, partners, galeries, products] = await Promise.all([getBanners(), getPartners(), getGaleries(), getProducts()]);
 
    return { banners, partners, galeries, products };
 });

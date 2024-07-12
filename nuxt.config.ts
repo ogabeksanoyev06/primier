@@ -16,7 +16,7 @@ export default defineNuxtConfig({
    },
    css: ['@/assets/styles/main.css'],
 
-   modules: ['@nuxtjs/tailwindcss', '@nuxt/image', 'nuxt-swiper', '@nuxtjs/i18n', '@pinia/nuxt'],
+   modules: ['@nuxtjs/tailwindcss', '@nuxt/image', 'nuxt-swiper', '@nuxtjs/i18n', '@pinia/nuxt', 'nuxt-aos'],
 
    i18n: {
       locales: ['en', 'ru'],
@@ -32,5 +32,8 @@ export default defineNuxtConfig({
 
    build: {
       transpile: ['vue-toastification']
+   },
+   aos: {
+      once: true
    }
 });

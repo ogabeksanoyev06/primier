@@ -26,15 +26,11 @@
                   <div class="flex flex-col gap-6">
                      <h3 class="text-xl sm:text-2xl font-medium">Серия DELTA CENTER</h3>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <UICard v-for="(item, i) in productCategories" :key="i" :photo="item?.photo[0]" :id="item?.id" />
+                        <div v-for="(item, i) in productCategories" data-aos="fade-up">
+                           <UICard :key="i" :photo="item?.photo[0]" :id="item?.id" :title="item.title[$i18n.locale]" />
+                        </div>
                      </div>
                   </div>
-                  <!-- <div class="flex flex-col gap-6">
-                     <h3 class="text-xl sm:text-2xl font-medium">Серия VFxxxUHP для силовой и скоростной обработки</h3>
-                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <UICard v-for="(item, i) in products" :key="i" :photo="item.photo" :id="item.id" />
-                     </div>
-                  </div> -->
                </div>
             </div>
          </div>
@@ -67,7 +63,8 @@ watch(
    () => route.query.categoryId,
    (newCategoryId) => {
       currentCategory.value = newCategoryId;
-   }
+   },
+   { immediate: true }
 );
 
 const { data: categories } = await useAsyncData('categories', async () => {

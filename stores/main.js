@@ -30,7 +30,7 @@ export const useMainStore = defineStore('main', () => {
    }
    async function getGaleries() {
       try {
-         const response = await api.get('/api/galeries');
+         const response = await api.get('/api/portfolios');
          return response.data;
       } catch (error) {
          console.log(error);

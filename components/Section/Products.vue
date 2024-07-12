@@ -15,7 +15,9 @@
             </UIButton>
          </div>
          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <UICard v-for="(item, i) in products" :key="i" :id="item.id" :photo="item.photo[0]" :title="item.title[$i18n.locale]" />
+            <div v-for="(item, i) in products" data-aos="fade-up">
+               <UICard :key="i" :id="item.id" :photo="item.photo[0]" :title="item.title[$i18n.locale]" />
+            </div>
          </div>
       </section>
    </div>

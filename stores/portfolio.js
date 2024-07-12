@@ -6,16 +6,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
 
    async function getPortfolios() {
       try {
-         const response = await api.get('/api/portfolios');
-         return response.data;
-      } catch (error) {
-         console.log(error);
-      }
-   }
-
-   async function getPortfolioId(id) {
-      try {
-         const response = await api.get(`api/portfolios${id}`);
+         const response = await api.get('/api/post');
          return response.data;
       } catch (error) {
          console.log(error);
@@ -23,7 +14,6 @@ export const usePortfolioStore = defineStore('portfolio', () => {
    }
 
    return {
-      getPortfolios,
-      getPortfolioId
+      getPortfolios
    };
 });
