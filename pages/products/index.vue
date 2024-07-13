@@ -24,7 +24,22 @@
             <div class="lg:col-span-5">
                <div class="flex flex-col gap-10">
                   <div class="flex flex-col gap-6">
-                     <h3 class="text-xl sm:text-2xl font-medium">Серия DELTA CENTER</h3>
+                     <div class="flex items-center justify-center w-full">
+                        <h3 class="text-xl sm:text-2xl font-medium flex-1">Серия DELTA CENTER</h3>
+                        <button class="flex items-center justify-center lg:hidden" @click="categoryModal = true">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                              <path d="M2.5 5.5H8.33333" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M2.5 10.5H10" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M15.8333 10.5H17.5" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M11.6667 5.5L17.5 5.5" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M10.8333 15.5L16.6666 15.5" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M2.5 15.5H5" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              <circle cx="6.66667" cy="15.5002" r="1.66667" stroke="#353437" stroke-width="1.5" />
+                              <ellipse cx="14.1667" cy="10.5002" rx="1.66667" ry="1.66667" stroke="#353437" stroke-width="1.5" />
+                              <ellipse cx="9.99998" cy="5.50016" rx="1.66667" ry="1.66667" stroke="#353437" stroke-width="1.5" />
+                           </svg>
+                        </button>
+                     </div>
                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div v-for="(item, i) in productCategories" data-aos="fade-up">
                            <UICard :key="i" :photo="item?.photo[0]" :id="item?.id" :title="item.title[$i18n.locale]" />
@@ -33,6 +48,26 @@
                   </div>
                </div>
             </div>
+         </div>
+      </div>
+      <div class="fixed bottom-0 inset-x-0 lg:hidden h-full w-full z-[9999] bg-white border-t p-4 transition-300" :class="categoryModal ? ' translate-y-0' : ' translate-y-full'">
+         <button class="flex justify-end w-full" @click="categoryModal = false">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M13.5355 6.4644L6.46448 13.5355M13.5355 13.5354L6.46448 6.46436" stroke="#020105" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+         </button>
+         <div class="relative overflow-hidden h-full py-4">
+            <ul class="flex flex-col gap-8 w-full h-full" style="overflow: hidden scroll">
+               <li
+                  class="text-grey text-base xl:text-lg hover:text-primary transition-300 cursor-pointer"
+                  v-for="(item, i) in categories"
+                  :key="i"
+                  :class="{ 'text-primary': item.id === Number(currentCategory) }"
+                  @click="navigateToCategory(item.id)"
+               >
+                  {{ item.title[$i18n.locale] }}
+               </li>
+            </ul>
          </div>
       </div>
    </div>
@@ -46,6 +81,7 @@ import { useTranslationStore } from '~/stores/translations';
 
 const route = useRoute();
 const currentCategory = ref(null);
+const categoryModal = ref(false);
 
 const productsStore = useProductsStore();
 const categoriesStore = useCategoriesStore();
@@ -57,15 +93,25 @@ const { translations } = storeToRefs(translationsStore);
 
 const navigateToCategory = (categoryId) => {
    navigateTo({ query: { categoryId } });
+   categoryModal.value = false;
 };
 
 watch(
    () => route.query.categoryId,
    (newCategoryId) => {
       currentCategory.value = newCategoryId;
+      categoryModal.value = false;
    },
    { immediate: true }
 );
+
+watch(categoryModal, () => {
+   if (categoryModal.value) {
+      document.documentElement.style.overflow = 'hidden';
+   } else {
+      document.documentElement.style.overflow = 'auto';
+   }
+});
 
 const { data: categories } = await useAsyncData('categories', async () => {
    return await getProductsCategories();
