@@ -52,7 +52,7 @@
                   <span> English </span>
                </div>
                <transition name="fade">
-                  <div class="absolute top-full left-0 pt-3" v-if="languageDropdown">
+                  <div class="absolute top-full -left-full translate-x-1/2 pt-3" v-if="languageDropdown">
                      <div class="bg-white border rounded-[4px] px-2">
                         <div class="flex flex-col gap-1">
                            <div class="flex items-center gap-1 cursor-pointer p-1" @click="selectLang(langs[0])">
