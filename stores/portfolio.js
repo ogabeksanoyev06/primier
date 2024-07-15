@@ -6,7 +6,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
 
    async function getPortfolios() {
       try {
-         const response = await api.get('/api/post');
+         const response = await api.get('/api/posts');
          return response.data;
       } catch (error) {
          console.log(error);
