@@ -21,9 +21,7 @@
          }"
       >
          <SwiperSlide v-for="(slide, i) in banners" :key="i">
-            <div class="md:h-[550px] h-[350px]">
-               <img :src="`${useRuntimeConfig().public.apiBaseUrl}/storage/${slide.photo}`" alt="" class="h-full w-full object-cover" />
-            </div>
+            <img :src="`${useRuntimeConfig().public.apiBaseUrl}/storage/${slide.photo}`" alt="" class="h-full w-full object-cover" />
          </SwiperSlide>
       </Swiper>
 
