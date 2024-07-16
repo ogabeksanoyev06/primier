@@ -3,7 +3,7 @@
       <div class="bg-background lg:rounded">
          <div class="flex items-center justify-between px-4 md:px-10 lg:px-20 flex-col lg:flex-row">
             <div class="lg:max-w-[400px] max-w-[350px] w-full flex items-stretch justify-center order-2 lg:order-1">
-               <img src="/assets/images/transformer.png" alt="" class="w-full h-full" />
+               <img src="/assets/images/transformer_green.webp" alt="" class="w-full h-full" />
             </div>
             <div class="flex flex-col max-w-[780px] w-full lg:flex-1 pt-4 md:pt-8 lg:py-12 order-1 lg:order-2">
                <h4 class="text-grey text-lg mb-4">{{ translations['main.about_title'] }}</h4>
