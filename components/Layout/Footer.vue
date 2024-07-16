@@ -11,17 +11,17 @@
                </h3>
                <div class="grid grid-cols-2 gap-4 sm:gap-y-8 sm:gap-x-6">
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Адрес офиса</p>
+                     <p class="font-medium">{{ translations['footer.contacts.location'] }}</p>
                      <p>
                         {{ translations['footer.contacts.location1'] }}
                      </p>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">E-mail для связи</p>
+                     <p class="font-medium">E-mail</p>
                      <a href="#"> {{ translations['footer.contacts.email1'] }} </a>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Телефон для связи</p>
+                     <p class="font-medium">{{ translations['footer.contacts.tel'] }}</p>
                      <a :href="`tel:${translations['footer.contacts.phone1']}`">
                         {{ translations['footer.contacts.phone1'] }}
                      </a>
@@ -51,23 +51,23 @@
                </h3>
                <div class="grid grid-cols-2 gap-4 sm:gap-y-8 sm:gap-x-6">
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Адрес офиса</p>
+                     <p class="font-medium">{{ translations['footer.contacts.location'] }}</p>
                      <p>
                         {{ translations['footer.contacts.location2'] }}
                      </p>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">E-mail для связи</p>
+                     <p class="font-medium">E-mail</p>
                      <a href="#"> {{ translations['footer.contacts.email2'] }} </a>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Телефон для связи</p>
+                     <p class="font-medium">{{ translations['footer.contacts.tel'] }}</p>
                      <a :href="`tel:${translations['footer.contacts.phone2']}`">
                         {{ translations['footer.contacts.phone2'] }}
                      </a>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Fax</p>
+                     <p class="font-medium">{{ translations['footer.contacts.fax'] }}</p>
                      <a :href="`tel:${translations['footer.contacts.fax2']}`">
                         {{ translations['footer.contacts.fax2'] }}
                      </a>
@@ -96,23 +96,23 @@
                </h3>
                <div class="grid grid-cols-2 gap-4 sm:gap-y-8 sm:gap-x-6">
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Адрес офиса</p>
+                     <p class="font-medium">{{ translations['footer.contacts.location'] }}</p>
                      <p>
                         {{ translations['footer.contacts.location3'] }}
                      </p>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">E-mail для связи</p>
+                     <p class="font-medium">E-mail</p>
                      <a href="#"> {{ translations['footer.contacts.email3'] }} </a>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Телефон для связи</p>
+                     <p class="font-medium">{{ translations['footer.contacts.tel'] }}</p>
                      <a :href="`tel:${translations['footer.contacts.phone3']}`">
                         {{ translations['footer.contacts.phone3'] }}
                      </a>
                   </div>
                   <div class="flex flex-col gap-2">
-                     <p class="font-medium">Fax</p>
+                     <p class="font-medium">{{ translations['footer.contacts.fax'] }}</p>
                      <a :href="`tel:${translations['footer.contacts.fax3']}`">
                         {{ translations['footer.contacts.fax3'] }}
                      </a>
