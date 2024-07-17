@@ -13,7 +13,17 @@ export const useCategoriesStore = defineStore('categories', () => {
       }
    };
 
+   const getProductsCategoriesId = async (id) => {
+      try {
+         const response = await api.get(`/api/product-categories/${id}`);
+         return response.data;
+      } catch (error) {
+         console.log(error);
+      }
+   };
+
    return {
-      getProductsCategories
+      getProductsCategories,
+      getProductsCategoriesId
    };
 });

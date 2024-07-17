@@ -161,8 +161,10 @@ const onSlideChange = () => {
    activeIndex.value = mainSwiper.value.activeIndex;
 };
 
+const slug = computed(() => route.params.slug);
+
 const { data: product } = await useAsyncData('product', () => getProductId(route.params.slug), {
-   watch: [route.params.slug]
+   watch: [slug]
 });
 
 const { data: products } = await useAsyncData('products', getProducts);

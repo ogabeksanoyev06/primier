@@ -25,7 +25,7 @@
                <div class="flex flex-col gap-10">
                   <div class="flex flex-col gap-6">
                      <div class="flex items-center justify-center w-full">
-                        <h3 class="text-xl sm:text-2xl font-medium flex-1">Серия DELTA CENTER</h3>
+                        <h3 class="text-xl sm:text-2xl font-medium flex-1">{{ categoriesId.title[$i18n.locale] }}</h3>
                         <button class="flex items-center justify-center lg:hidden" @click="categoryModal = true">
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                               <path d="M2.5 5.5H8.33333" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -88,7 +88,7 @@ const categoriesStore = useCategoriesStore();
 const translationsStore = useTranslationStore();
 
 const { getProductCategoryId } = productsStore;
-const { getProductsCategories } = categoriesStore;
+const { getProductsCategories, getProductsCategoriesId } = categoriesStore;
 const { translations } = storeToRefs(translationsStore);
 
 const navigateToCategory = (categoryId) => {
@@ -118,6 +118,16 @@ const { data: categories } = await useAsyncData('categories', async () => {
 });
 
 currentCategory.value = route.query?.categoryId || categories.value?.[0]?.id;
+
+const { data: categoriesId } = await useAsyncData(
+   'categoriesId',
+   async () => {
+      return await getProductsCategoriesId(currentCategory.value);
+   },
+   {
+      watch: [() => route.query.categoryId]
+   }
+);
 
 const { data: productCategories } = await useAsyncData(
    'product-categories',
