@@ -13,13 +13,42 @@
             </div>
          </div>
       </div>
-      <section>
-         <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold mb-4">{{ translations['main.clients'] }}</h2>
-         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-4">
-            <a :href="item.link" target="_blank" class="block lg:hover:scale-105 transition-300 max-w-[220px] w-full" v-for="item in partners" :key="item">
-               <img :src="`${useRuntimeConfig().public.apiBaseUrl}/storage/${item.photo}`" alt="Heroku" loading="lazy" class="h-full w-full object-contain rounded-xl" />
-            </a>
-         </div>
+      <section class="px-4">
+         <h2 class="text-2xl md:text-3xl xl:text-4xl font-semibold mb-4 mt-6">{{ translations['main.clients'] }}</h2>
+         <Swiper
+            :modules="[SwiperAutoplay, SwiperMousewheel]"
+            :loop="true"
+            :mousewheel="true"
+            :autoplay="{
+               delay: 100,
+               disableOnInteraction: true
+            }"
+            :breakpoints="{
+               1280: {
+                  slidesPerView: 5,
+                  spaceBetween: 30
+               },
+               1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 16
+               },
+               476: {
+                  slidesPerView: 2,
+                  spaceBetween: 12
+               },
+
+               0: {
+                  slidesPerView: 1,
+                  spaceBetween: 8
+               }
+            }"
+         >
+            <SwiperSlide v-for="item in partners" :key="item">
+               <a :href="item.link" target="_blank" class="block lg:hover:scale-105 transition-300 max-w-[220px] w-full mx-auto sm:mx-0">
+                  <img :src="`${useRuntimeConfig().public.apiBaseUrl}/storage/${item.photo}`" alt="Heroku" loading="lazy" class="h-full w-full object-contain rounded-xl" />
+               </a>
+            </SwiperSlide>
+         </Swiper>
       </section>
    </div>
 </template>
