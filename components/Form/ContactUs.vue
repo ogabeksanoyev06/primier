@@ -30,9 +30,10 @@
                      type="text"
                      :placeholder="translations['form.phone']"
                      v-model="form.phone"
-                     v-maska="'+998 ## ###-##-##'"
+                     v-maska="'+###############'"
                      class="w-full h-full text-base sm:text-sm text-black border-b border-secondary bg-transparent transition-300 py-4 outline-none placeholder:text-secondary placeholder:text-base"
                      required
+                     maxlength="15"
                   />
                </ClientOnly>
             </div>
