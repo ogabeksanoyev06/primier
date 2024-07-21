@@ -32,9 +32,9 @@
                      <p>с 9:00 до 18:00 (пн-пт)</p>
                   </div> -->
                </div>
-               <div style="position: relative; overflow: hidden" class="rounded">
+               <div style="position: relative; overflow: hidden">
                   <iframe
-                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2340.344768927145!2d10.003389876595802!3d54.08536237251286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b24be73e946e1b%3A0x7e070ca3ef6de1ed!2zVHVuZ2VuZG9yZmVyIFN0ci4gMTAsIDI0NTM2IE5ldW3DvG5zdGVyLCDQk9C10YDQvNCw0L3QuNGP!5e0!3m2!1sru!2s!4v1720440350606!5m2!1sru!2s"
+                     src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2995.5995244308333!2d69.17259807582508!3d41.33932097130601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDIwJzIxLjYiTiA2OcKwMTAnMzAuNiJF!5e0!3m2!1sru!2s!4v1721582364381!5m2!1sru!2s"
                      width="600"
                      height="350"
                      style="border: 0"
@@ -79,7 +79,7 @@
                </div>
                <div style="position: relative; overflow: hidden" class="rounded">
                   <iframe
-                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1415.4196801400776!2d20.426954946984026!3d44.804462326491084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a6ff119ea1e25%3A0x8a6434013135bb21!2z0JLQu9Cw0LTQuNC80LjRgNCwINCf0L7Qv9C-0LLQuNGb0LAgMzgtNDAsINCR0LXQvtCz0YDQsNC0LCDQodC10YDQsdC40Y8!5e0!3m2!1sru!2s!4v1720440256513!5m2!1sru!2s"
+                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1014.2927994315638!2d10.005138982857568!3d54.085393629341844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b24a28999215ab%3A0xfab9e2fbb532f767!2sPRIMINER%20GERMANY!5e0!3m2!1sru!2s!4v1721582222565!5m2!1sru!2s"
                      width="600"
                      height="350"
                      style="border: 0"
