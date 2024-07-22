@@ -62,13 +62,17 @@
                      </h2>
                   </div>
                   <div class="flex flex-col gap-4" v-if="product?.descriptions">
-                     <h3 class="text-xl font-medium">Description</h3>
+                     <h3 class="text-xl font-medium">
+                        {{ translations['products.description'] }}
+                     </h3>
                      <ul class="flex flex-col gap-4">
                         <li class="text-grey text-base flex gap-1 items-center"><span v-html="product?.descriptions[$i18n.locale]"></span></li>
                      </ul>
                   </div>
                   <div class="flex flex-col gap-4" v-if="product.standard_key">
-                     <h3 class="text-xl font-medium">standard configuration</h3>
+                     <h3 class="text-xl font-medium">
+                        {{ translations['products.standard'] }}
+                     </h3>
                      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <li class="flex items-start gap-2" v-for="(item, i) in product?.standard_key[$i18n.locale]" :key="i">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +101,9 @@
                      </ul>
                   </div>
                   <div class="flex flex-col gap-4" v-if="product.optional_key">
-                     <h3 class="text-xl font-medium">Optional configuration</h3>
+                     <h3 class="text-xl font-medium">
+                        {{ translations['products.optional'] }}
+                     </h3>
                      <ul class="flex flex-col gap-3">
                         <li class="flex items-start gap-2" v-for="(item, i) in product?.optional_key[$i18n.locale]" :key="i">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

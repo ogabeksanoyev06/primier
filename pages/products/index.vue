@@ -1,7 +1,9 @@
 <template>
    <div class="mt-20">
       <div class="container flex flex-col gap-20">
-         <h2 class="text-2xl md:text-3xl xl:text-4xl text-center font-semibold">CNC vertical machining centre</h2>
+         <h2 class="text-2xl md:text-3xl xl:text-4xl text-center font-semibold">
+            {{ translations['products.title'] }}
+         </h2>
          <div class="grid grid-cols-1 gap-10 lg:grid-cols-7">
             <div class="lg:col-span-2 hidden lg:block">
                <div class="sticky top-32 h-full max-h-[calc(100vh-100px)] pb-4 shrink-0 overflow-x-clip overflow-y-scroll">
