@@ -26,9 +26,12 @@
             <div class="lg:col-span-5">
                <div class="flex flex-col gap-10">
                   <div class="flex flex-col gap-6">
+                     <h3 class="text-xl font-medium text-center block sm:hidden">{{ categoriesId.title[$i18n.locale] }}</h3>
                      <div class="flex items-center justify-center w-full">
-                        <h3 class="text-xl sm:text-2xl font-medium flex-1">{{ categoriesId.title[$i18n.locale] }}</h3>
-                        <button class="flex items-center justify-center lg:hidden" @click="categoryModal = true">
+                        <h3 class="text-xl font-medium flex flex-1 items-center justify-between">
+                           <span class="sm:inline-block hidden">{{ categoriesId.title[$i18n.locale] }}</span> <UIButton @click="downloadFile">{{translations['header.download']}}</UIButton>
+                        </h3>
+                        <button class="flex items-center justify-center lg:hidden ml-2" @click="categoryModal = true">
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                               <path d="M2.5 5.5H8.33333" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                               <path d="M2.5 10.5H10" stroke="#353437" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -80,6 +83,15 @@ import { useRoute } from 'vue-router';
 import { useProductsStore } from '~/stores/products.js';
 import { useCategoriesStore } from '~/stores/categories.js';
 import { useTranslationStore } from '~/stores/translations';
+
+// Download document
+function downloadFile() {
+  const fileUrl = '/files/primier.pdf';
+  const link = document.createElement('a');
+  link.href = fileUrl;
+  link.download = 'primier-catalog.pdf';
+  link.click();
+}
 
 // Seo
 useHead(() => {
